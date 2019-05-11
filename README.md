@@ -21,9 +21,9 @@ $ pipenv shell
 (golden-touch-elearning) $ export MYSQL_PASS=your_mysql_password
 (golden-touch-elearning) $ export MYSQL_HOST=localhost
 (golden-touch-elearning) $ export MYSQL_PORT=3306
-(golden-touch-elearning) $ python3 manage.py makemigrations
-(golden-touch-elearning) $ python3 manage.py migrate
-(golden-touch-elearning) $ python3 manage.py runserver 5000
+(golden-touch-elearning) $ python manage.py makemigrations
+(golden-touch-elearning) $ python manage.py migrate
+(golden-touch-elearning) $ python manage.py runserver 5000
 ```
 
 #### 配置持久化保留
@@ -35,9 +35,9 @@ $ pipenv shell
 修改`mytestserver.py`文件中的配置，之后就可以用`mytestserver.py`代替`manage.py`，如：
 
 ```shell
-(golden-touch-elearning) $ python3 mytestserver.py makemigrations
-(golden-touch-elearning) $ python3 mytestserver.py migrate
-(golden-touch-elearning) $ python3 mytestserver.py runserver 5000
+(golden-touch-elearning) $ python mytestserver.py makemigrations
+(golden-touch-elearning) $ python mytestserver.py migrate
+(golden-touch-elearning) $ python mytestserver.py runserver 5000
 ```
 
 ### 前端
