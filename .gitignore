@@ -116,3 +116,7 @@ venv.bak/
 *.njsproj
 *.sln
 *.sw?
+
+# Project
+
+mytestserver.py
