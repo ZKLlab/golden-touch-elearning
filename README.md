@@ -32,7 +32,7 @@ $ pipenv shell
 (golden-touch-elearning) $ cp testserver.py mytestserver.py
 ```
 
-修改`mytestserver.py`文件中的配置，之后就可以用`mytestserver.py`代替`manage.py`，如：
+修改`mytestserver.py`文件中的配置，之后就可以用`mytestserver.py`代替`manage.py`而不用每次export环境变量，如：
 
 ```shell
 (golden-touch-elearning) $ python mytestserver.py makemigrations
@@ -62,7 +62,7 @@ $ pipenv shell
 3. 启动服务
 
 ```shell
-(golden-touch-elearning) $ npm run serve
+(golden-touch-elearning) $ vue-cli-service serve
 # OR
 (golden-touch-elearning) $ vue ui
 ```
