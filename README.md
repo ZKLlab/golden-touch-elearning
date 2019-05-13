@@ -66,7 +66,7 @@ $ pipenv shell
 3. 启动服务
 
 ```shell
-(golden-touch-elearning) $ vue-cli-service serve
+(golden-touch-elearning) $ npm run serve
 # OR
 (golden-touch-elearning) $ vue ui
 ```
