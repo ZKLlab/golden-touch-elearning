@@ -9,9 +9,9 @@ python_version = "3.7"
 [dev-packages]
 
 [packages]
-rsa = "*"
 django = "*"
+coreapi = "*"
 mysqlclient = "*"
+django-filter = "*"
 djangorestframework = "*"
 djangorestframework-jwt = "*"
-django-filter = "*"

@@ -1,0 +1,23 @@
+dist: xenial
+language: python
+services:
+  - mysql
+python:
+  - "3.7"
+env:
+  global:
+    - SECRET_KEY=6a457ec43e9667e93400f6d2f2dea36be3174d958557714c3b98f6b69079229f
+    - MYSQL_DB=elearning_test
+    - MYSQL_USER=travis
+    - MYSQL_PASS=
+    - MYSQL_HOST=localhost
+    - MYSQL_PORT=3306
+before_install:
+  - mysql -e 'CREATE DATABASE elearning_test;'
+install:
+  - pip install --upgrade pipenv
+  - pipenv install --system
+before_script:
+  - python manage.py makemigrations &  python manage.py migrate
+script:
+  - python manage.py test
