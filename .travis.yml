@@ -16,8 +16,8 @@ before_install:
   - mysql -e 'CREATE DATABASE elearning_test;'
 install:
   - pip install --upgrade pipenv
-  - pipenv install --system
+  - pipenv install
 before_script:
-  - python manage.py makemigrations &  python manage.py migrate
+  - python manage.py makemigrations & python manage.py migrate
 script:
   - python manage.py test
