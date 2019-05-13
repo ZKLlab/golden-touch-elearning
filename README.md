@@ -1,6 +1,6 @@
-点石成金网络教学平台
+点石成金网络教学平台（开发中）
 
-（开发中）
+[![Build Status](https://www.travis-ci.org/ZKLlab/golden-touch-elearning.svg?branch=dev)](https://www.travis-ci.org/ZKLlab/golden-touch-elearning)
 
 ## 开发环境配置
 
