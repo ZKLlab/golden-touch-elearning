@@ -2,6 +2,10 @@
 
 [![Build Status](https://www.travis-ci.org/ZKLlab/golden-touch-elearning.svg?branch=dev)](https://www.travis-ci.org/ZKLlab/golden-touch-elearning)
 
+## 环境要求
+
+Python 3.7
+
 ## 开发环境配置
 
 ### 后端
