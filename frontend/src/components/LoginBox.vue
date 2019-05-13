@@ -73,7 +73,7 @@ export default {
       this.$refs['login'].validate((valid) => {
         if (valid && !this.loading) {
           this.loading = true;
-          this.$axios.post('/api/account/session', {
+          this.$axios.post('/api/session', {
             username: this.login.username,
             password: this.login.password
           }).then(() => {

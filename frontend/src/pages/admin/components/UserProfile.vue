@@ -108,7 +108,7 @@ export default {
         callback()
       } else {
         this.usernameLoading = true
-        this.$axios.get('/api/admin/username', {
+        this.$axios.get('/api/username', {
           params: {u: value},
         }).then((response) => {
           if (response.data['can_use'] === true) {
@@ -177,7 +177,7 @@ export default {
           if (this.action === 'add') {
             let profile = this.profile
             profile['user_type'] = this.userTypeID()
-            this.$axios.post('/api/admin/user', profile).then(() => {
+            this.$axios.post('/api/user', profile).then(() => {
               this.$message({
                 message: '用户添加成功！',
                 type: 'success',
@@ -190,7 +190,7 @@ export default {
             })
           } else {
             let profile = this.profile
-            this.$axios.put(`/api/admin/user/${this.data.id}`, profile).then(() => {
+            this.$axios.put(`/api/user/${this.data.id}`, profile).then(() => {
               this.$message.success('用户信息修改成功！')
               this.$emit('success', false)
             }).catch(() => {

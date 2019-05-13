@@ -311,7 +311,7 @@ export default {
         cancelButtonText: '取消',
         type: 'warning'
       }).then(() => {
-        this.$axios.delete(`/api/admin/user/${row['id']}`).then(() => {
+        this.$axios.delete(`/api/user/${row['id']}`).then(() => {
           this.$message.success('用户已删除!')
           this.pullData()
         }).catch(() => {
@@ -337,7 +337,7 @@ export default {
       if (this.cancel !== null) {
         this.cancel()
       }
-      this.$axios.get(`/api/admin/users/${this.activeTab}`, {
+      this.$axios.get(`/api/users/${this.activeTab}`, {
         cancelToken: new axios.CancelToken((c) => {
           this.cancel = c
         }),

@@ -1,10 +1,8 @@
 from django.http import Http404, HttpResponse
-from django.contrib import auth
-from django.middleware import csrf
+from rest_framework import generics
 from django.core.exceptions import ValidationError
-from django.contrib.auth.password_validation import validate_password
-from rest_framework import permissions, generics
 from rest_framework.response import Response
+from django.contrib.auth.password_validation import validate_password
 
 import api.pagination
 import api.permissions
@@ -12,49 +10,10 @@ import api.serializers
 from account.models import User
 
 
-def csrf_token_view(request):
-    csrf.get_token(request)
-    return HttpResponse(status=204)
-
-
-class AccountSession(generics.GenericAPIView):
-    permission_classes = (permissions.AllowAny,)
-    serializer_class = api.serializers.account.SessionSerializer
-
-    @staticmethod
-    def post(request):
-        serializer = api.serializers.account.SessionSerializer(data=request.data, context={'request': request})
-        if serializer.is_valid():
-            return HttpResponse(status=204)
-        else:
-            return Response(serializer.errors, 400)
-
-    @staticmethod
-    def delete(request):
-        auth.logout(request)
-        return HttpResponse(status=204)
-
-
-class AccountInfo(generics.GenericAPIView):
-    permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
-
-    @staticmethod
-    def get(request):
-        user_info = {
-            'is_logged_in': request.user.is_authenticated,
-            'display_name': None,
-            'gender': None,
-            'user_type': None,
-        }
-        if user_info['is_logged_in']:
-            user_info['display_name'] = request.user.display_name
-            user_info['gender'] = request.user.gender
-            user_info['user_type'] = request.user.user_type
-            user_info['is_superuser'] = request.user.is_superuser
-        return Response(user_info)
-
-
-class AdminUsername(generics.GenericAPIView):
+class UsernameValidatorView(generics.GenericAPIView):
+    """
+    验证用户名是否可用
+    """
     permissions = (api.permissions.IsSuperuser, api.permissions.IsVolunteer)
 
     @staticmethod
@@ -68,8 +27,9 @@ class AdminUsername(generics.GenericAPIView):
             return Response({'error': '"u"参数是必填项'}, status=400)
 
 
-class AdminPassword(generics.GenericAPIView):
+class PasswordValidatorView(generics.GenericAPIView):
     permissions = (api.permissions.IsSuperuser, api.permissions.IsVolunteer)
+    serializer_class = api.serializers.users.PasswordValidatorSerializer
 
     @staticmethod
     def post(request):
@@ -82,7 +42,7 @@ class AdminPassword(generics.GenericAPIView):
             return Response({'error': '"password"字段是必填项'}, status=400)
 
 
-class AdminUsers(generics.ListAPIView):
+class UsersView(generics.ListAPIView):
     permissions = (api.permissions.IsSuperuser, api.permissions.IsVolunteer)
     pagination_class = api.pagination.LimitedLimitOffsetPagination
     serializer_class = api.serializers.users.UserSerializer
@@ -96,12 +56,13 @@ class AdminUsers(generics.ListAPIView):
         return User.objects.filter(user_type=user_type)
 
 
-class AdminUsersPassword(generics.GenericAPIView):
+class UsersChangePasswordView(generics.GenericAPIView):
     permissions = (api.permissions.IsSuperuser, api.permissions.IsVolunteer)
+    serializer_class = api.serializers.users.ChangePasswordSerializer
 
     @staticmethod
     def patch(request):
-        serializer = api.serializers.users.UsersPasswordSerializer(data=request.data, context={'request': request})
+        serializer = api.serializers.users.ChangePasswordSerializer(data=request.data, context={'request': request})
         if serializer.is_valid():
             serializer.save()
             return HttpResponse(status=204)
@@ -109,13 +70,13 @@ class AdminUsersPassword(generics.GenericAPIView):
             return Response(serializer.errors, 400)
 
 
-class AdminUser(generics.UpdateAPIView, generics.DestroyAPIView):
+class UserView(generics.UpdateAPIView, generics.DestroyAPIView):
     permissions = (api.permissions.IsSuperuser, api.permissions.IsVolunteer)
     serializer_class = api.serializers.users.UserSerializer
     queryset = User.objects.all()
     lookup_field = 'id'
 
 
-class AdminUserCreate(generics.CreateAPIView):
+class UserCreateView(generics.CreateAPIView):
     permissions = (api.permissions.IsSuperuser, api.permissions.IsVolunteer)
     serializer_class = api.serializers.users.UserPostSerializer

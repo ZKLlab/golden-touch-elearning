@@ -1,12 +1,14 @@
 from django.db import transaction
 from django.utils import timezone
 from rest_framework import serializers
+from django.core.exceptions import ValidationError
+from django.contrib.auth.password_validation import validate_password
 
 from account.models import User
 
 
-class UsersPasswordSerializer(serializers.Serializer):
-    ids = serializers.ListField()
+class ChangePasswordSerializer(serializers.Serializer):
+    ids = serializers.ListField(child=serializers.IntegerField())
     password = serializers.CharField()
 
     def create(self, validated_data):
@@ -23,6 +25,20 @@ class UsersPasswordSerializer(serializers.Serializer):
         except User.DoesNotExist:
             msg = '一个或多个用户不存在。'
             raise serializers.ValidationError(msg)
+
+    def update(self, instance, validated_data):
+        pass
+
+
+class PasswordValidatorSerializer(serializers.Serializer):
+    password = serializers.CharField()
+
+    def create(self, validated_data):
+        try:
+            validate_password(validated_data['password'])
+            return {'can_use': True}
+        except ValidationError:
+            return {'can_use': False}
 
     def update(self, instance, validated_data):
         pass

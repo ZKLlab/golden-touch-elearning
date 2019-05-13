@@ -16,7 +16,7 @@ export default new Vuex.Store({
   actions: {
     updateUserInfo(context) {
       context.commit('UPDATE_USER_INFO', null)
-      axios.get('/api/account/info').then((response) => {
+      axios.get('/api/info').then((response) => {
         context.commit('UPDATE_USER_INFO', response.data)
       }).catch((error) => {
         if (error.response.status === 401 || error.response.status === 403) {
