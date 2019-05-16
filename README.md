@@ -1,7 +1,7 @@
 点石成金网络教学平台（开发中）
 
 [![Build Status](https://img.shields.io/travis/zkllab/golden-touch-elearning.svg)](https://www.travis-ci.org/ZKLlab/golden-touch-elearning)
-[![Coverage](https://img.shields.io/coveralls/github/ZKLlab/golden-touch-elearning.svg)](https://codecov.io/gh/ZKLlab/golden-touch-elearning)
+[![Coverage](https://img.shields.io/codecov/c/gh/ZKLlab/golden-touch-elearning.svg)](https://codecov.io/gh/ZKLlab/golden-touch-elearning)
 [![License](https://img.shields.io/github/license/ZKLlab/golden-touch-elearning.svg)](https://github.com/ZKLlab/golden-touch-elearning/blob/master/LICENSE)
 
 ## 环境要求
