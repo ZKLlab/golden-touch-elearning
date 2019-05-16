@@ -1,10 +1,18 @@
 点石成金网络教学平台（开发中）
 
-[![Build Status](https://www.travis-ci.org/ZKLlab/golden-touch-elearning.svg?branch=dev)](https://www.travis-ci.org/ZKLlab/golden-touch-elearning)
+[![Build Status](https://img.shields.io/travis/zkllab/golden-touch-elearning.svg)](https://www.travis-ci.org/ZKLlab/golden-touch-elearning)
+[![Coverage](https://img.shields.io/coveralls/github/ZKLlab/golden-touch-elearning.svg)](https://codecov.io/gh/ZKLlab/golden-touch-elearning)
+[![License](https://img.shields.io/github/license/ZKLlab/golden-touch-elearning.svg)](https://github.com/ZKLlab/golden-touch-elearning/blob/master/LICENSE)
 
 ## 环境要求
 
 Python 3.7
+
+## 技术栈
+
+前端：[Vue](https://github.com/vuejs/vue)
+
+后端：[Django](https://github.com/django/django)、[Django REST framework](https://github.com/encode/django-rest-framework)
 
 ## 开发环境配置
 

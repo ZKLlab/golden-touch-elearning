@@ -3,6 +3,8 @@ language: python
 services:
   - mysql
 python:
+  - "3.5"
+  - "3.6"
   - "3.7"
 env:
   global:
@@ -15,9 +17,11 @@ env:
 before_install:
   - mysql -e 'CREATE DATABASE elearning_test;'
 install:
-  - pip install --upgrade pipenv
+  - pip install --upgrade pipenv codecov
   - pipenv install
 before_script:
   - python manage.py makemigrations & python manage.py migrate
 script:
-  - python manage.py test
+  - coverage run manage.py test
+after_script:
+  - codecov
