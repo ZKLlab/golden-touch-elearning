@@ -29,7 +29,7 @@ class UsernameValidatorView(generics.GenericAPIView):
 
 class PasswordValidatorView(generics.GenericAPIView):
     permissions = (api.permissions.IsSuperuser, api.permissions.IsVolunteer)
-    serializer_class = api.serializers.users.PasswordValidatorSerializer
+    serializer_class = api.serializers.user.PasswordValidatorSerializer
 
     @staticmethod
     def post(request):
@@ -45,7 +45,7 @@ class PasswordValidatorView(generics.GenericAPIView):
 class UsersView(generics.ListAPIView):
     permissions = (api.permissions.IsSuperuser, api.permissions.IsVolunteer)
     pagination_class = api.pagination.LimitedLimitOffsetPagination
-    serializer_class = api.serializers.users.UserSerializer
+    serializer_class = api.serializers.user.UserSerializer
 
     def get_queryset(self):
         user_type = self.kwargs['user_type']
@@ -58,11 +58,11 @@ class UsersView(generics.ListAPIView):
 
 class UsersChangePasswordView(generics.GenericAPIView):
     permissions = (api.permissions.IsSuperuser, api.permissions.IsVolunteer)
-    serializer_class = api.serializers.users.ChangePasswordSerializer
+    serializer_class = api.serializers.user.ChangePasswordSerializer
 
     @staticmethod
     def patch(request):
-        serializer = api.serializers.users.ChangePasswordSerializer(data=request.data, context={'request': request})
+        serializer = api.serializers.user.ChangePasswordSerializer(data=request.data, context={'request': request})
         if serializer.is_valid():
             serializer.save()
             return HttpResponse(status=204)
@@ -72,11 +72,11 @@ class UsersChangePasswordView(generics.GenericAPIView):
 
 class UserView(generics.UpdateAPIView, generics.DestroyAPIView):
     permissions = (api.permissions.IsSuperuser, api.permissions.IsVolunteer)
-    serializer_class = api.serializers.users.UserSerializer
+    serializer_class = api.serializers.user.UserSerializer
     queryset = User.objects.all()
     lookup_field = 'id'
 
 
 class UserCreateView(generics.CreateAPIView):
     permissions = (api.permissions.IsSuperuser, api.permissions.IsVolunteer)
-    serializer_class = api.serializers.users.UserPostSerializer
+    serializer_class = api.serializers.user.UserPostSerializer
