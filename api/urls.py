@@ -23,6 +23,8 @@ urlpatterns = [
     path('session', views.account.SessionView.as_view()),
     path('token', obtain_jwt_token),
     path('info', views.account.InfoView.as_view()),
+    # Course
+    path('courses', views.course.CoursesView.as_view()),
     # User
     path('username', views.user.UsernameValidatorView.as_view()),
     path('password', views.user.PasswordValidatorView.as_view()),

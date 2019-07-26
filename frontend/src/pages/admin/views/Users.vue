@@ -71,15 +71,15 @@
         :label="displayNameLabel"
       >
         <template v-slot="scope">
-          {{ scope.row['display_name'] }}
+          {{ scope['row']['display_name'] }}
           <font-awesome-icon
-            v-if="scope.row['gender'] === 1"
+            v-if="scope['row']['gender'] === 1"
             class="gender-icon"
             icon="venus"
             style="color: #F48FB1"
           />
           <font-awesome-icon
-            v-if="scope.row['gender'] === 2"
+            v-if="scope['row']['gender'] === 2"
             class="gender-icon"
             icon="mars"
             style="color: #64B5F6"
@@ -91,9 +91,9 @@
         label="用户名"
       >
         <template v-slot="scope">
-          {{ scope.row['username'] }}
+          {{ scope['row']['username'] }}
           <el-tooltip
-            v-if="scope.row['is_current_user']"
+            v-if="scope['row']['is_current_user']"
             effect="dark"
             content="当前登录用户"
             :enterable="false"
@@ -105,7 +105,7 @@
             />
           </el-tooltip>
           <el-tooltip
-            v-if="!scope.row['has_password']"
+            v-if="!scope['row']['has_password']"
             effect="dark"
             content="无登录密码"
             :enterable="false"
@@ -117,7 +117,7 @@
             />
           </el-tooltip>
           <el-tooltip
-            v-if="scope.row['is_superuser']"
+            v-if="scope['row']['is_superuser']"
             effect="dark"
             content="超级用户"
             :enterable="false"
@@ -129,7 +129,7 @@
             />
           </el-tooltip>
           <el-tooltip
-            v-if="!scope.row['is_active']"
+            v-if="!scope['row']['is_active']"
             effect="dark"
             content="已停用"
             :enterable="false"
@@ -156,7 +156,7 @@
             class="actions-button"
             type="text"
             size="small"
-            @click="showProfile(scope.row)"
+            @click="showProfile(scope['row'])"
           >
             修改
           </el-button>
@@ -164,18 +164,18 @@
             class="actions-button"
             type="text"
             size="small"
-            :disabled="scope.row['is_current_user']"
-            @click="showResetPassword([scope.row['id']])"
+            :disabled="scope['row']['is_current_user']"
+            @click="showResetPassword([scope['row']['id']])"
           >
             重置密码
           </el-button>
           <el-button
             class="actions-button"
-            :style="scope.row['is_current_user'] ? '' : 'color: red'"
+            :style="scope['row']['is_current_user'] ? '' : 'color: red'"
             type="text"
             size="small"
-            :disabled="scope.row['is_current_user']"
-            @click="showDeleteDialog(scope.row)"
+            :disabled="scope['row']['is_current_user']"
+            @click="showDeleteDialog(scope['row'])"
           >
             删除
           </el-button>
@@ -311,7 +311,7 @@ export default {
         cancelButtonText: '取消',
         type: 'warning'
       }).then(() => {
-        this.$axios.delete(`/api/user/${row['id']}`).then(() => {
+        this.$axios.delete(`/user/${row['id']}`).then(() => {
           this.$message.success('用户已删除!')
           this.pullData()
         }).catch(() => {
@@ -337,7 +337,7 @@ export default {
       if (this.cancel !== null) {
         this.cancel()
       }
-      this.$axios.get(`/api/users/${this.activeTab}`, {
+      this.$axios.get(`/users/${this.activeTab}`, {
         cancelToken: new axios.CancelToken((c) => {
           this.cancel = c
         }),

@@ -56,7 +56,7 @@ export default {
   data() {
     let validatePassword = (rule, value, callback) => {
       this.passwordLoading = true
-      this.$axios.post('/api/password', {
+      this.$axios.post('/password', {
         password: value
       }).then((response) => {
         if (response.data['can_use'] === true) {
@@ -93,7 +93,7 @@ export default {
       this.$refs['resetPassword'].validate((valid) => {
         if (valid && !this.loading) {
           this.loading = true
-          this.$axios.patch('/api/users', {
+          this.$axios.patch('/users', {
             ids: this.ids,
             password: this.resetPassword['password']
           }).then(() => {

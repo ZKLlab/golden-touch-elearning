@@ -1,1 +1,1 @@
-from . import account, user
+from . import account, course, user

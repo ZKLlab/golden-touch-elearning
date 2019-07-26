@@ -108,7 +108,7 @@ export default {
         callback()
       } else {
         this.usernameLoading = true
-        this.$axios.get('/api/username', {
+        this.$axios.get('/username', {
           params: {u: value},
         }).then((response) => {
           if (response.data['can_use'] === true) {
@@ -146,7 +146,7 @@ export default {
       profileRules: {
         username: [
           {required: true, message: '此项为必填项', trigger: 'blur'},
-          {pattern: '^[\\w.@+-]+$', message: '只支持大小写字母、数字和部分符号（@/./+/-/_）', trigger: 'blur'},
+          {pattern: '^[\\w.@+-]+$', message: '只支持大小写字母、数字和部分符号(@/./+/-/_)', trigger: 'blur'},
           {validator: validateLength(150), trigger: 'blur'},
           {validator: validateUsername, trigger: 'blur'},
         ],
@@ -155,7 +155,7 @@ export default {
           {validator: validateLength(150), trigger: 'blur'},
         ],
         is_active: [],
-        gender: [],
+        gender: []
       },
       usernameLoading: false,
       loading: false
@@ -177,7 +177,7 @@ export default {
           if (this.action === 'add') {
             let profile = this.profile
             profile['user_type'] = this.userTypeID()
-            this.$axios.post('/api/user', profile).then(() => {
+            this.$axios.post('/user', profile).then(() => {
               this.$message({
                 message: '用户添加成功！',
                 type: 'success',
@@ -190,7 +190,7 @@ export default {
             })
           } else {
             let profile = this.profile
-            this.$axios.put(`/api/user/${this.data.id}`, profile).then(() => {
+            this.$axios.put(`/user/${this.data.id}`, profile).then(() => {
               this.$message.success('用户信息修改成功！')
               this.$emit('success', false)
             }).catch(() => {

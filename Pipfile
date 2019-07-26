@@ -10,10 +10,10 @@ python_version = "3.7"
 
 [packages]
 django = "*"
+pyyaml = "*"
 coreapi = "*"
 mysqlclient = "*"
 django-filter = "*"
 djangorestframework = "*"
 django-rest-swagger = "*"
 djangorestframework-jwt = "*"
-pyyaml = "*"

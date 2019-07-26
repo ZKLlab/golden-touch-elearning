@@ -13,6 +13,11 @@ export default new Router({
     //   component: () => import('./views/Media.vue')
     // },
     {
+      path: '/courses',
+      name: 'courses',
+      component: () => import('./views/Courses.vue')
+    },
+    {
       path: '/users',
       name: 'users',
       component: () => import('./views/Users.vue')

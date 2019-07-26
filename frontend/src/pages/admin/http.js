@@ -1,11 +1,12 @@
 import axios from 'axios'
 import Cookies from 'js-cookie'
 
+axios.defaults.baseURL = '/api'
 axios.interceptors.request.use(function (config) {
   return new Promise((resolve) => {
     if (config.method !== 'get') {
       if (!Cookies.get('csrftoken')) {
-        axios.get('/api/csrf_token').then(() => {
+        axios.get('/csrf_token').then(() => {
           config.headers['X-CSRFToken'] = Cookies.get('csrftoken')
           resolve(config)
         }).catch(() => {

@@ -150,7 +150,7 @@ export default {
         lock: true,
         text: '正在退出登录',
       })
-      axios.delete('/api/session').then(() => {
+      axios.delete('/session').then(() => {
         this.$message.success('已退出登录！')
         this.$store.dispatch('updateUserInfo')
       }).catch(() => {
