@@ -14,7 +14,7 @@ class UsernameValidatorView(generics.GenericAPIView):
     """
     验证用户名是否可用
     """
-    permissions = (api.permissions.IsSuperuser, api.permissions.IsVolunteer)
+    permission_classes = [api.permissions.IsSuperuser & api.permissions.IsVolunteer]
 
     @staticmethod
     def get(request):
@@ -28,7 +28,7 @@ class UsernameValidatorView(generics.GenericAPIView):
 
 
 class PasswordValidatorView(generics.GenericAPIView):
-    permissions = (api.permissions.IsSuperuser, api.permissions.IsVolunteer)
+    permission_classes = [api.permissions.IsSuperuser & api.permissions.IsVolunteer]
     serializer_class = api.serializers.user.PasswordValidatorSerializer
 
     @staticmethod
@@ -43,7 +43,7 @@ class PasswordValidatorView(generics.GenericAPIView):
 
 
 class UsersView(generics.ListAPIView):
-    permissions = (api.permissions.IsSuperuser, api.permissions.IsVolunteer)
+    permission_classes = [api.permissions.IsSuperuser & api.permissions.IsVolunteer]
     pagination_class = api.pagination.LimitedLimitOffsetPagination
     serializer_class = api.serializers.user.UserSerializer
 
@@ -57,7 +57,7 @@ class UsersView(generics.ListAPIView):
 
 
 class UsersChangePasswordView(generics.GenericAPIView):
-    permissions = (api.permissions.IsSuperuser, api.permissions.IsVolunteer)
+    permission_classes = [api.permissions.IsSuperuser & api.permissions.IsVolunteer]
     serializer_class = api.serializers.user.ChangePasswordSerializer
 
     @staticmethod
@@ -71,12 +71,12 @@ class UsersChangePasswordView(generics.GenericAPIView):
 
 
 class UserView(generics.UpdateAPIView, generics.DestroyAPIView):
-    permissions = (api.permissions.IsSuperuser, api.permissions.IsVolunteer)
+    permission_classes = [api.permissions.IsSuperuser & api.permissions.IsVolunteer]
     serializer_class = api.serializers.user.UserSerializer
     queryset = User.objects.all()
     lookup_field = 'id'
 
 
 class UserCreateView(generics.CreateAPIView):
-    permissions = (api.permissions.IsSuperuser, api.permissions.IsVolunteer)
+    permission_classes = [api.permissions.IsSuperuser & api.permissions.IsVolunteer]
     serializer_class = api.serializers.user.UserCreateSerializer

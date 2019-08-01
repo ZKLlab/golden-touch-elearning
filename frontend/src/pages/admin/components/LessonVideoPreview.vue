@@ -51,13 +51,23 @@ export default {
         this.player = new Plyr(this.$refs['videoPlayer'], {
           quality: {default: 540, options: [1080, 720, 540, 360]},
           ratio: '16:9',
-          controls: ['play-large', 'play', 'progress', 'current-time', 'duration', 'mute', 'volume', 'captions', 'settings', 'download', 'fullscreen'],
+          controls: ['play-large', 'play', 'progress', 'current-time', 'duration', 'mute', 'volume', 'settings', 'download', 'fullscreen'],
           i18n: i18n,
+          captions: {active: true, language: 'zh', update: true}
         })
         this.player.source = {
           type: 'video',
           sources: sources,
           poster: response.data['VideoBase']['Cover'],
+          tracks: [
+            {
+              kind: 'captions',
+              label: '中文测试字幕',
+              srclang: 'zh',
+              src: '/test.vtt',
+              default: true,
+            },
+          ],
         }
 
       }).catch(() => {

@@ -20,7 +20,7 @@ router.beforeEach((to, from, next) => {
     })
     const unwatch = store.watch((state) => state.userInfo, () => {
       loading.close()
-      if (store.state.userInfo['is_logged_in'] === true && store.state.userInfo['user_type'] === 2) {
+      if (store.state.userInfo['is_logged_in'] === true && store.state.userInfo['is_volunteer']) {
         next()
       } else {
         next()
@@ -29,7 +29,7 @@ router.beforeEach((to, from, next) => {
       unwatch()
     })
   } else {
-    if (store.state.userInfo['is_logged_in'] === true && store.state.userInfo['user_type'] === 2) {
+    if (store.state.userInfo['is_logged_in'] === true && store.state.userInfo['is_volunteer']) {
       next()
     } else {
       next(false)

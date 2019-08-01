@@ -27,7 +27,7 @@ class SessionView(generics.GenericAPIView):
 
 
 class InfoView(generics.GenericAPIView):
-    permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
+    permission_classes = (permissions.AllowAny,)
 
     @staticmethod
     def get(request):
@@ -42,4 +42,7 @@ class InfoView(generics.GenericAPIView):
             user_info['gender'] = request.user.gender
             user_info['user_type'] = request.user.user_type
             user_info['is_superuser'] = request.user.is_superuser
+            user_info['is_volunteer'] = request.user.is_volunteer
+            user_info['is_teacher'] = request.user.is_teacher
+            user_info['is_student'] = request.user.is_student
         return Response(user_info)

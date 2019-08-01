@@ -316,11 +316,10 @@ export default {
       }).then(() => {
         this.loading = true
         this.$axios.delete(`/user/${row['id']}`).then(() => {
-          this.$message.success('用户已删除!')
+          this.$message.success('用户已删除！')
           this.pullData()
         }).catch(() => {
-          this.$message.error('用户删除失败，请检查网络后重试')
-        }).then(() => {
+          this.$message.error('用户删除失败，请检查网络后重试！')
           this.loading = false
         })
       })

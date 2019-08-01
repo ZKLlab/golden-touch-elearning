@@ -56,7 +56,7 @@ def seconds_to_duration(seconds):
 
 
 class CourseCategoriesView(generics.ListAPIView):
-    permissions = (api.permissions.IsSuperuser, api.permissions.IsVolunteer)
+    permission_classes = [api.permissions.IsSuperuser & api.permissions.IsVolunteer]
     serializer_class = api.serializers.course.CourseCategorySerializer
 
     def get_queryset(self):
@@ -64,7 +64,7 @@ class CourseCategoriesView(generics.ListAPIView):
 
 
 class CoursesView(generics.ListAPIView):
-    permissions = (api.permissions.IsSuperuser, api.permissions.IsVolunteer)
+    permission_classes = [api.permissions.IsSuperuser & api.permissions.IsVolunteer]
     serializer_class = api.serializers.course.CourseSerializer
 
     def get_queryset(self):
@@ -72,7 +72,7 @@ class CoursesView(generics.ListAPIView):
 
 
 class CourseView(generics.RetrieveUpdateDestroyAPIView):
-    permissions = (api.permissions.IsSuperuser, api.permissions.IsVolunteer)
+    permission_classes = [api.permissions.IsSuperuser & api.permissions.IsVolunteer]
     serializer_class = api.serializers.course.CourseSerializer
     lookup_field = 'slug'
 
@@ -81,12 +81,12 @@ class CourseView(generics.RetrieveUpdateDestroyAPIView):
 
 
 class CourseCreateView(generics.CreateAPIView):
-    permissions = (api.permissions.IsSuperuser, api.permissions.IsVolunteer)
+    permission_classes = [api.permissions.IsSuperuser & api.permissions.IsVolunteer]
     serializer_class = api.serializers.course.CourseCreateSerializer
 
 
 class LessonsView(generics.ListAPIView):
-    permissions = (api.permissions.IsSuperuser, api.permissions.IsVolunteer)
+    permission_classes = [api.permissions.IsSuperuser & api.permissions.IsVolunteer]
     serializer_class = api.serializers.course.LessonSerializer
 
     def get_queryset(self):
@@ -99,7 +99,7 @@ class LessonsView(generics.ListAPIView):
 
 
 class LessonCreateView(generics.CreateAPIView):
-    permissions = (api.permissions.IsSuperuser, api.permissions.IsVolunteer)
+    permission_classes = [api.permissions.IsSuperuser & api.permissions.IsVolunteer]
     serializer_class = api.serializers.course.LessonSerializer
 
     def get_queryset(self):
@@ -112,7 +112,7 @@ class LessonCreateView(generics.CreateAPIView):
 
 
 class LessonView(generics.RetrieveUpdateDestroyAPIView):
-    permissions = (api.permissions.IsSuperuser, api.permissions.IsVolunteer)
+    permission_classes = [api.permissions.IsSuperuser & api.permissions.IsVolunteer]
     serializer_class = api.serializers.course.LessonSerializer
     lookup_field = 'id'
 
@@ -122,7 +122,7 @@ class LessonView(generics.RetrieveUpdateDestroyAPIView):
 
 
 class VideosView(generics.ListAPIView):
-    permissions = (api.permissions.IsSuperuser, api.permissions.IsVolunteer)
+    permission_classes = [api.permissions.IsSuperuser & api.permissions.IsVolunteer]
 
     def get(self, request, *args, **kwargs):
         page_no = request.query_params.get('page_no', '1')
@@ -159,7 +159,7 @@ class VideosView(generics.ListAPIView):
 
 
 class PlayInfoView(generics.RetrieveAPIView):
-    permissions = (api.permissions.IsSuperuser, api.permissions.IsVolunteer)
+    permission_classes = [api.permissions.IsSuperuser & api.permissions.IsVolunteer]
 
     def get(self, request, *args, **kwargs):
         video_id = request.query_params.get('video_id', '')

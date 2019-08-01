@@ -18,10 +18,6 @@ export default new Vuex.Store({
       context.commit('UPDATE_USER_INFO', null)
       axios.get('/info').then((response) => {
         context.commit('UPDATE_USER_INFO', response.data)
-      }).catch((error) => {
-        if (error.response.status === 401 || error.response.status === 403) {
-          context.commit('UPDATE_USER_INFO', null)
-        }
       })
     }
   },
