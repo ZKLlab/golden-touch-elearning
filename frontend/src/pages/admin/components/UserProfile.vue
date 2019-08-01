@@ -67,7 +67,6 @@
         提交
       </el-button>
       <el-button
-        type="plain"
         @click="resetForm"
       >
         重置
@@ -85,21 +84,21 @@ export default {
   props: {
     data: {
       type: Object,
-      default: null
+      default: null,
     },
     userType: {
       required: true,
       type: String,
       validator(value) {
         return ['volunteer', 'school', 'student'].indexOf(value) !== -1
-      }
+      },
     },
     action: {
       required: true,
       type: String,
       validator(value) {
         return ['add', 'edit'].indexOf(value) !== -1
-      }
+      },
     }
   },
   data() {
@@ -158,7 +157,7 @@ export default {
         gender: []
       },
       usernameLoading: false,
-      loading: false
+      loading: false,
     }
   },
   computed: {
@@ -214,7 +213,7 @@ export default {
     userTypeID() {
       return {student: 0, school: 1, volunteer: 2}[this.userType]
     },
-  }
+  },
 }
 </script>
 

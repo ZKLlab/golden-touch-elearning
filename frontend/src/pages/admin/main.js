@@ -1,11 +1,11 @@
 import Vue from 'vue'
 import NProgress from 'nprogress'
 import 'nprogress/nprogress.css'
-import '../../plugins/element.js'
+import '../../plugins/element'
 
-import App from './App.vue'
-import axios from './http.js'
-import store from '../../store.js'
+import App from './App'
+import axios from './http'
+import store from '../../store'
 import router from './router'
 
 Vue.config.productionTip = false

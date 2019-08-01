@@ -32,7 +32,10 @@
         :disabled="loading"
         @click="pullData"
       >
-        <font-awesome-icon icon="sync-alt" />
+        <font-awesome-icon
+          icon="sync-alt"
+          :spin="loading"
+        />
         刷新
       </el-button>
     </div>
@@ -51,6 +54,7 @@
     <el-table
       v-loading="loading"
       :data="tableData"
+      style="margin-top: 5px"
       @selection-change="handleSelection"
     >
       <template slot="empty">
@@ -225,16 +229,15 @@
 </template>
 
 <script>
-import '../../../plugins/element.js'
 import axios from 'axios'
-import UserProfile from "../components/UserProfile.vue";
-import UserPasswordReset from "../components/UserPasswordReset.vue";
+import UserProfile from '../components/UserProfile';
+import UserPasswordReset from '../components/UserPasswordReset';
 
 export default {
   name: 'Users',
   components: {
     UserProfile,
-    UserPasswordReset
+    UserPasswordReset,
   },
   data() {
     return {
@@ -252,7 +255,7 @@ export default {
       resetPasswordDialogVisible: false,
       resetPasswordReset: false,
       resetPasswordIDs: [],
-      tableSelection: []
+      tableSelection: [],
     }
   },
   computed: {
@@ -311,11 +314,14 @@ export default {
         cancelButtonText: '取消',
         type: 'warning'
       }).then(() => {
+        this.loading = true
         this.$axios.delete(`/user/${row['id']}`).then(() => {
           this.$message.success('用户已删除!')
           this.pullData()
         }).catch(() => {
           this.$message.error('用户删除失败，请检查网络后重试')
+        }).then(() => {
+          this.loading = false
         })
       })
     },
@@ -336,6 +342,7 @@ export default {
       this.loading = true
       if (this.cancel !== null) {
         this.cancel()
+        this.cancel = null
       }
       this.$axios.get(`/users/${this.activeTab}`, {
         cancelToken: new axios.CancelToken((c) => {
@@ -358,8 +365,8 @@ export default {
         this.cancel = null
         this.loading = false
       })
-    }
-  }
+    },
+  },
 }
 </script>
 

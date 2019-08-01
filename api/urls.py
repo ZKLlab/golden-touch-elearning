@@ -24,7 +24,15 @@ urlpatterns = [
     path('token', obtain_jwt_token),
     path('info', views.account.InfoView.as_view()),
     # Course
+    path('course_categories', views.course.CourseCategoriesView.as_view()),
     path('courses', views.course.CoursesView.as_view()),
+    path('course', views.course.CourseCreateView.as_view()),
+    path('course/<str:slug>', views.course.CourseView.as_view()),
+    path('course/<str:slug>/lessons', views.course.LessonsView.as_view()),
+    path('course/<str:slug>/lesson', views.course.LessonCreateView.as_view()),
+    path('course/<str:slug>/lesson/<str:id>', views.course.LessonView.as_view()),
+    path('videos', views.course.VideosView.as_view()),
+    path('play_info', views.course.PlayInfoView.as_view()),
     # User
     path('username', views.user.UsernameValidatorView.as_view()),
     path('password', views.user.PasswordValidatorView.as_view()),

@@ -59,11 +59,11 @@ export default {
     return {
       login: {
         username: '',
-        password: ''
+        password: '',
       },
       loginRules: {
         username: [{required: true, message: '请输入用户名', trigger: 'blur'}],
-        password: [{required: true, message: '请输入密码', trigger: 'blur'}]
+        password: [{required: true, message: '请输入密码', trigger: 'blur'}],
       },
       loading: false,
     }
@@ -75,7 +75,7 @@ export default {
           this.loading = true;
           this.$axios.post('/session', {
             username: this.login.username,
-            password: this.login.password
+            password: this.login.password,
           }).then(() => {
             this.$refs['login'].resetFields()
             this.$store.dispatch('updateUserInfo')
@@ -97,8 +97,8 @@ export default {
           })
         }
       })
-    }
-  }
+    },
+  },
 }
 </script>
 

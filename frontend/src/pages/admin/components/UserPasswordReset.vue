@@ -50,7 +50,7 @@ export default {
   props: {
     ids: {
       required: true,
-      type: Array
+      type: Array,
     },
   },
   data() {
@@ -106,8 +106,8 @@ export default {
           })
         }
       })
-    }
-  }
+    },
+  },
 }
 </script>
 

@@ -79,4 +79,4 @@ class UserView(generics.UpdateAPIView, generics.DestroyAPIView):
 
 class UserCreateView(generics.CreateAPIView):
     permissions = (api.permissions.IsSuperuser, api.permissions.IsVolunteer)
-    serializer_class = api.serializers.user.UserPostSerializer
+    serializer_class = api.serializers.user.UserCreateSerializer

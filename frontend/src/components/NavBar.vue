@@ -117,7 +117,7 @@ export default {
   data() {
     return {
       loginDialogVisible: false,
-      loggingOut: false
+      loggingOut: false,
     }
   },
   computed: {
@@ -135,7 +135,7 @@ export default {
           this.loginDialogVisible = true
         }
       }
-    }
+    },
   },
   mounted() {
     this.$refs['brand'].removeAttribute('tabindex')
@@ -158,8 +158,8 @@ export default {
       }).then(() => {
         loading.close()
       })
-    }
-  }
+    },
+  },
 }
 </script>
 

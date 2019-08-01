@@ -16,7 +16,7 @@ import {
   Radio,
   RadioGroup,
   // RadioButton,
-  // Checkbox,
+  Checkbox,
   // CheckboxButton,
   // CheckboxGroup,
   Switch,
@@ -24,7 +24,7 @@ import {
   Option,
   // OptionGroup,
   Button,
-  // ButtonGroup,
+  ButtonGroup,
   Table,
   TableColumn,
   // DatePicker,
@@ -32,13 +32,13 @@ import {
   // TimePicker,
   Popover,
   Tooltip,
-  // Breadcrumb,
-  // BreadcrumbItem,
+  Breadcrumb,
+  BreadcrumbItem,
   Form,
   FormItem,
   Tabs,
   TabPane,
-  // Tag,
+  Tag,
   // Tree,
   // Alert,
   // Slider,
@@ -67,7 +67,10 @@ import {
   Loading,
   MessageBox,
   Message,
-  // Notification
+  // Notification,
+  PageHeader,
+  Divider,
+  Image,
 } from 'element-ui'
 
 Vue.use(Pagination)
@@ -85,7 +88,7 @@ Vue.use(Input)
 Vue.use(Radio)
 Vue.use(RadioGroup)
 // Vue.use(RadioButton)
-// Vue.use(Checkbox)
+Vue.use(Checkbox)
 // Vue.use(CheckboxButton)
 // Vue.use(CheckboxGroup)
 Vue.use(Switch)
@@ -93,7 +96,7 @@ Vue.use(Select)
 Vue.use(Option)
 // Vue.use(OptionGroup)
 Vue.use(Button)
-// Vue.use(ButtonGroup)
+Vue.use(ButtonGroup)
 Vue.use(Table)
 Vue.use(TableColumn)
 // Vue.use(DatePicker)
@@ -101,13 +104,13 @@ Vue.use(TableColumn)
 // Vue.use(TimePicker)
 Vue.use(Popover)
 Vue.use(Tooltip)
-// Vue.use(Breadcrumb)
-// Vue.use(BreadcrumbItem)
+Vue.use(Breadcrumb)
+Vue.use(BreadcrumbItem)
 Vue.use(Form)
 Vue.use(FormItem)
 Vue.use(Tabs)
 Vue.use(TabPane)
-// Vue.use(Tag)
+Vue.use(Tag)
 // Vue.use(Tree)
 // Vue.use(Alert)
 // Vue.use(Slider)
@@ -133,6 +136,9 @@ Vue.use(Header)
 Vue.use(Aside)
 Vue.use(Main)
 Vue.use(Footer)
+Vue.use(PageHeader)
+Vue.use(Divider)
+Vue.use(Image)
 
 Vue.use(Loading.directive)
 
